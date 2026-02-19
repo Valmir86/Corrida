@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motorista Particular | Zona Sul SP</title>
- <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" type="favicon-32.png" sizes="32x32" href="favicon-32.png">
+
     <meta name="theme-color" content="#00eaff">
     <link rel="stylesheet" href="style.css">
 
@@ -65,12 +62,38 @@
                 <p>Aqui você agenda sua viagem com transparência.</p>
                 <p>Nosso compromisso é simples: proporcionar uma viagem segura.</p>
                 <p>Mais do que transporte, entregamos confiança.</p>
-   
+    
                 <a href="#corrida" class="market-btn">Solicitar Cotação</a>
             </article>
     
         </div>
     </aside>
+    <!-- SOBRE -->
+    <section id="sobre" class="section">
+        <h2 class="anim-logo">Sobre Mim</h2>
+        <div style="display:flex;align-items:center;gap:20px;">
+            <img src="/valmir.jpg" style="width:100px;border-radius:50%;border:2px solid #00eaff;">
+            <span>VALMIR SILVA</span>
+        </div>
+    
+        <div class="card">
+            <p>
+                Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo,
+                oferecendo transporte seguro, pontual e personalizado.
+            </p>
+            <br>
+            <p>
+                Além do transporte executivo, também atuo como <b>desenvolvedor de sites</b>,
+                criando soluções digitais para motoristas, empresas e profissionais autônomos
+                que desejam modernizar seus atendimentos.
+            </p>
+            <br>
+            <p>
+                Este sistema foi desenvolvido por mim para oferecer transparência no cálculo
+                das corridas e facilitar o agendamento direto com o cliente.
+            </p>
+        </div>
+    </section>
 
     <!-- CALCULAR CORRIDA -->
     <section id="corrida" class="section">
@@ -102,9 +125,15 @@
             <label>Motorista</label>
             <select id="motorista">
                 <option value="5511941824692">Valmir</option>
-                <option value="5511988296001">Stephan</option>
-                <option value=""></option>
+                <option value="5511999999999">Carlos</option>
+                <option value="5511888888888">Marcos</option>
             </select>
+            <label>Forma de Pagamento</label>
+            <select id="pagamento">
+                <option value="Pix">Pix</option>
+                <option value="Dinheiro">Dinheiro</option>
+            </select>
+
 
             <input id="pedagio" type="number" placeholder="Valor de pedágios (se houver)">
 
@@ -119,34 +148,6 @@
         </div>
     </section>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="section">
-        <h2 class="anim-logo">Sobre Mim</h2>
-        <div style="display:flex;align-items:center;gap:20px;">
-            <img src="/valmir.jpg" style="width:100px;border-radius:50%;border:2px solid #00eaff;">
-            <span>VALMIR SILVA</span>
-        </div>
-    
-        <div class="card">
-            <p>
-                Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo,
-                oferecendo transporte seguro, pontual e personalizado.
-            </p>
-            <br>
-            <p>
-                Além do transporte executivo, também atuo como <b>desenvolvedor de sites</b>,
-                criando soluções digitais para motoristas, empresas e profissionais autônomos
-                que desejam modernizar seus atendimentos.
-            </p>
-            <br>
-            <p>
-                Este sistema foi desenvolvido por mim para oferecer transparência no cálculo
-                das corridas e facilitar o agendamento direto com o cliente.
-            </p>
-        </div>
-    </section>
-
-    
 
     <!-- SÓCIOS -->
     <section id="socios" class="section">
@@ -201,91 +202,111 @@
             });
 
             directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer({ map });
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
         }
+
+        /* Inicializa o mapa quando a página carrega */
+        window.onload = initMap;
 
         function calcularRota() {
 
             const origem = document.getElementById("origem").value;
             const destino = document.getElementById("destino").value;
             const pedagio = parseFloat(document.getElementById("pedagio").value) || 0;
-            const tipo = document.getElementById("tipo").value;
 
             if (!origem || !destino) {
-                alert("Preencha origem e destino");
+                alert("Preencha origem e destino.");
                 return;
             }
 
-            directionsService.route({
+            const request = {
                 origin: origem,
                 destination: destino,
-                travelMode: "DRIVING"
-            }).then(response => {
+                travelMode: google.maps.TravelMode.DRIVING
+            };
 
-                directionsRenderer.setDirections(response);
+            directionsService.route(request, function (result, status) {
 
-                let metros = response.routes[0].legs[0].distance.value;
-                distanciaKM = metros / 1000;
+                if (status === "OK") {
 
-                let valorKM = distanciaKM * 3.25;
+                    directionsRenderer.setDirections(result);
 
-                if (tipo === "Ida e Volta") {
-                    valorKM *= 2;
-                    distanciaKM *= 2;
+                    const route = result.routes[0].legs[0];
+
+                    /* Distância real vinda do Google */
+                    distanciaKM = route.distance.value / 1000;
+
+                    /* REGRA DE PREÇO */
+                    if (distanciaKM <= 3) {
+                        valorFinal = 10;
+                    } else {
+                        let excedente = distanciaKM - 3;
+                        valorFinal = 10 + (excedente * 3.25);
+                    }
+
+                    valorFinal += pedagio;
+
+                    document.getElementById("resultado").innerHTML =
+                        `<h3>Resumo da Corrida</h3>
+                 📏 Distância: ${distanciaKM.toFixed(2)} km <br>
+                 ⏱️ Tempo estimado: ${route.duration.text} <br>
+                 💰 Pedágio: R$ ${pedagio.toFixed(2)} <br><br>
+    
+                 <strong style="font-size:24px;color:#00eaff">
+                 Valor Total: R$ ${valorFinal.toFixed(2)}
+                 </strong>`;
+
+                } else {
+                    alert("Não foi possível calcular a rota.");
                 }
 
-                if (tipo === "À disposição") {
-                    valorKM += 250;
-                }
-
-                valorFinal = valorKM + pedagio;
-
-                document.getElementById("resultado").innerHTML =
-                    `Distância: ${distanciaKM.toFixed(2)} KM<br>
-         Valor KM: R$ ${valorKM.toFixed(2)}<br>
-         Pedágios: R$ ${pedagio.toFixed(2)}<br>
-         <b>Total: R$ ${valorFinal.toFixed(2)}</b>`;
             });
         }
 
         function enviarWhats() {
 
+            const nome = document.getElementById("nome").value;
+            const telefone = document.getElementById("telefone").value;
+            const origem = document.getElementById("origem").value;
+            const destino = document.getElementById("destino").value;
+            const paradas = document.getElementById("paradas").value;
+            const data_saida = document.getElementById("data_saida").value;
+            const data_retorno = document.getElementById("data_retorno").value;
+            const tipo = document.getElementById("tipo").value;
             const motorista = document.getElementById("motorista").value;
+            const pagamento = document.getElementById("pagamento").value;
+
+            if (!valorFinal) {
+                alert("Calcule a corrida primeiro.");
+                return;
+            }
 
             let msg =
-                `🚗 SOLICITAÇÃO DE VIAGEM
+                `🚗 *COTAÇÃO DE CORRIDA*
+    
+    👤 ${nome}
+    📞 ${telefone}
+    
+    📍 Origem: ${origem}
+    📍 Destino: ${destino}
+    🛑 Paradas: ${paradas}
+    
+    📅 Saída: ${data_saida}
+    📅 Retorno: ${data_retorno}
+    🧭 Tipo: ${tipo}
+    
+    💳 Pagamento: ${pagamento}
+    
+    📏 Distância: ${distanciaKM.toFixed(2)} km
+    💰 Valor: R$ ${valorFinal.toFixed(2)}
+    `;
 
-Nome: ${nome.value}
-Telefone: ${telefone.value}
-
-Origem: ${origem.value}
-Destino: ${destino.value}
-
-Paradas: ${paradas.value}
-
-Saída: ${data_saida.value}
-Retorno: ${data_retorno.value}
-
-Tipo: ${tipo.value}
-
-Distância: ${distanciaKM.toFixed(2)} KM
-Valor Total: R$ ${valorFinal.toFixed(2)}`;
-
-            window.open(`https://wa.me/${motorista}?text=${encodeURIComponent(msg)}`);
+            const url = `https://wa.me/${motorista}?text=${encodeURIComponent(msg)}`;
+            window.open(url, "_blank");
         }
     </script>
 
-    <!-- COLOQUE SUA CHAVE AQUI -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&callback=initMap"
-        defer></script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(() => console.log("APP pronto"))
-                .catch(err => console.log("Erro:", err));
-        }
-    </script>
 
     <!-- Code injected by live-server -->
     <script>
@@ -393,9 +414,3 @@ Valor Total: R$ ${valorFinal.toFixed(2)}`;
 </body>
 
 </html>
-
-
-
-
-
-
