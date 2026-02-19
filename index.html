@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorista Particular | Zona Sul SP</title>
+
+    <!-- SEO -->
+    <meta name="description"
+        content="Transporte Executivo Particular na Zona Sul de São Paulo. Segurança, pontualidade e atendimento personalizado.">
+    <meta name="theme-color" content="#00eaff">
+
+    <!-- Open Graph (WhatsApp / Redes Sociais) -->
+    <meta property="og:title" content="Motorista Particular | Zona Sul SP">
+    <meta property="og:description" content="Transporte executivo com conforto, segurança e pontualidade.">
+    <meta property="og:image" content="/fast_drive.jpg">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places&callback=iniciarMapa">
+        </script>
+
+
+    <!-- Schema.org (Google entende como serviço local) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Motorista Zona Sul",
+            "description": "Transporte Executivo Particular",
+            "telephone": "+55 11 94182-4692",
+            "areaServed": "Zona Sul de São Paulo",
+            "serviceType": "Transporte Executivo Particular"
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="topo" role="banner">
+        <nav class="nav-container" aria-label="Menu principal">
+
+            <a href="#inicio" class="marca-link" aria-label="Página inicial">
+                <h1 class="anim-logo marca">Motorista Zona Sul</h1>
+            </a>
+
+            <ul class="menu">
+                <li><a class="anim-titulo" href="#inicio">Início</a></li>
+                <li><a class="anim-titulo" href="#corrida">Calcular Corrida</a></li>
+                <li><a class="anim-titulo" href="#sobre">Sobre</a></li>
+                <li><a class="anim-titulo" href="#socios">Sócios</a></li>
+                <li><a class="anim-titulo" href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="conteudo-principal">
+
+        <!-- ===== HERO ===== -->
+        <section id="inicio" class="hero" aria-labelledby="titulo-hero">
+
+            <header class="hero-conteudo">
+                <h2 id="titulo-hero" class="anim-titulo">Transporte Executivo Particular</h2>
+
+                <p class="anim-sub">
+                    Atendimento exclusivo na Zona Sul de São Paulo.
+                </p>
+
+                <p class="anim-logo destaque">
+                    FAST DRIVE
+                </p>
+            </header>
+
+            <figure class="hero-imagem">
+                <img src="/fast_drive.jpg" alt="Veículo executivo utilizado no atendimento particular">
+            </figure>
+
+        </section>
+
+        <!-- ===== SERVIÇO ===== -->
+        <section id="corrida" class="section" aria-labelledby="titulo-corrida">
+            <article class="servico">
+
+                <header class="section-header">
+                    <h2 id="titulo-corrida">Calcular Corrida</h2>
+                </header>
+
+                <form class="form-box" onsubmit="event.preventDefault(); calcularRota();"
+                    aria-label="Formulário de cálculo de corrida">
+
+                    <fieldset>
+                        <legend>Dados do Passageiro</legend>
+
+                        <label for="nome">Nome do passageiro</label>
+                        <input id="nome">
+
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Rota</legend>
+
+                        <label for="origem">Endereço de saída</label>
+                        <input id="origem">
+
+                        <label for="destino">Endereço de destino</label>
+                        <input id="destino">
+
+                        <label for="paradas">Paradas intermediárias (se houver)</label>
+                        <textarea id="paradas"></textarea>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Agendamento</legend>
+
+                        <label for="data_saida">Data e hora de saída</label>
+                        <input type="datetime-local" id="data_saida">
+
+                        <label for="data_retorno">Data e hora de retorno</label>
+                        <input type="datetime-local" id="data_retorno">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Configuração da Viagem</legend>
+
+                        <label for="tipo">Tipo de viagem</label>
+                        <select id="tipo">
+                            <option>Apenas Ida</option>
+                            <option>Ida e Volta</option>
+                            <option>À disposição</option>
+                        </select>
+
+                        <label for="motorista">Motorista</label>
+                        <select id="motorista">
+                            <option value="5511941824692">Valmir</option>
+                            <option value="5511999999999">Carlos</option>
+                            <option value="5511888888888">Marcos</option>
+                        </select>
+
+                        <label for="pedagio">Valor de pedágios (se houver)</label>
+                        <input id="pedagio" type="number">
+                    </fieldset>
+
+                    <div class="acoes-form">
+                        <button type="submit">Calcular</button>
+                        <button type="button" onclick="enviarWhats()">Enviar Cotação</button>
+                    </div>
+
+                    <output id="resultado" class="result" aria-live="polite"></output>
+
+                    <div id="map" role="region" aria-label="Mapa da rota"></div>
+
+                </form>
+
+            </article>
+        </section>
+
+        <!-- ===== MARKETING ===== -->
+        <aside class="market-section" aria-labelledby="titulo-market">
+            <div class="market-container">
+
+                <figure class="market-image">
+                    <img src="/d523fbb9-39f2-4898-ba6a-f30824deaf43.png"
+                        alt="Transporte Executivo com conforto e segurança">
+                </figure>
+
+                <article class="market-content">
+                    <h2 id="titulo-market">Mobilidade com Conforto, Segurança e Pontualidade</h2>
+
+                    <p>Tenha uma experiência diferenciada em transporte particular na Zona Sul de São Paulo.</p>
+                    <p>Aqui você agenda sua viagem com transparência.</p>
+                    <p>Nosso compromisso é simples: proporcionar uma viagem segura.</p>
+                    <p>Mais do que transporte, entregamos confiança.</p>
+
+                    <a href="#corrida" class="market-btn">Solicitar Cotação</a>
+                </article>
+
+            </div>
+        </aside>
+
+        <!-- ===== SOBRE ===== -->
+        <section id="sobre" class="section" aria-labelledby="titulo-sobre">
+            <article class="institucional">
+
+                <header>
+                    <h2 id="titulo-sobre" class="anim-logo">Sobre Mim</h2>
+                </header>
+
+                <figure>
+                    <img src="/valmir.jpg" alt="Foto de Valmir Silva">
+                    <figcaption>VALMIR SILVA</figcaption>
+                </figure>
+
+                <div class="card">
+                    <p>Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo.</p>
+                    <p>Além do transporte executivo, também atuo como <b>desenvolvedor de sites</b>.</p>
+                    <p>Este sistema foi desenvolvido por mim para oferecer transparência.</p>
+                </div>
+
+            </article>
+        </section>
+
+        <!-- ===== PARCERIAS ===== -->
+        <section id="socios" class="section" aria-labelledby="titulo-socios">
+            <article class="parcerias">
+
+                <header>
+                    <h2 id="titulo-socios" class="anim-logo">Sócios e Patrocinadores</h2>
+                </header>
+
+                <div class="card">
+                    <p>Empresas, motoristas ou investidores que desejarem participar do projeto.</p>
+                    <ul>
+                        <li>Parcerias com motoristas</li>
+                        <li>Publicidade local</li>
+                        <li>Integração tecnológica</li>
+                        <li>Expansão do atendimento</li>
+                    </ul>
+                </div>
+
+            </article>
+        </section>
+
+        <!-- ===== CONTATO ===== -->
+        <section id="contato" class="section" aria-labelledby="titulo-contato">
+
+            <header>
+                <h2 id="titulo-contato" class="anim-logo">Contato</h2>
+            </header>
+
+            <address class="card" aria-label="Informações para contato direto">
+                <p><b>WhatsApp / Telefone:</b></p>
+                <h3 style="color:#00eaff">11 94182-4692</h3>
+                <p>Entre em contato para corridas, parcerias ou desenvolvimento de sites.</p>
+            </address>
+
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="rodape" role="contentinfo">
+        <p>© 2026 • Transporte Executivo & Desenvolvimento Web</p>
+    </footer>
+    <script>
+        let map;
+        let directionsService;
+        let directionsRenderer;
+        let distanciaKM = 0;
+        let valorFinal = 0;
+
+        const VALOR_KM = 3.25;
+        const VALOR_HORA = 80;
+
+        /* ===============================
+           INICIAR MAPA
+        ================================ */
+        function iniciarMapa() {
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: -23.5505,
+                    lng: -46.6333
+                },
+                zoom: 12,
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+        }
+
+        /* ===============================
+           CALCULAR ROTA REAL
+        ================================ */
+        function calcularRota() {
+
+            const origem = document.getElementById("origem").value;
+            const destino = document.getElementById("destino").value;
+            const tipo = document.getElementById("tipo").value;
+            const pedagio = Number(document.getElementById("pedagio").value) || 0;
+            const dataSaida = document.getElementById("data_saida").value;
+            const dataRetorno = document.getElementById("data_retorno").value;
+
+            if (!origem || !destino) {
+                alert("Informe origem e destino.");
+                return;
+            }
+
+            const request = {
+                origin: origem,
+                destination: destino,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function (result, status) {
+
+                if (status === "OK") {
+
+                    directionsRenderer.setDirections(result);
+
+                    const rota = result.routes[0].legs[0];
+                    distanciaKM = rota.distance.value / 1000;
+
+                    let valorBase = distanciaKM * VALOR_KM;
+
+                    if (tipo === "Ida e Volta") {
+                        valorBase *= 2;
+                    }
+
+                    if (tipo === "À disposição") {
+
+                        const horas = calcularHoras(dataSaida, dataRetorno);
+                        valorBase = horas * VALOR_HORA;
+                    }
+
+                    valorFinal = valorBase + pedagio;
+
+                    document.getElementById("resultado").innerHTML = `
+                <strong>Resumo da Viagem</strong><br><br>
+                📏 Distância real: ${distanciaKM.toFixed(1)} km<br>
+                ⏱️ Duração estimada: ${rota.duration.text}<br>
+                💰 Pedágio: R$ ${pedagio.toFixed(2)}<br><br>
+
+                <span style="font-size:22px;color:#00eaff">
+                Valor Total: R$ ${valorFinal.toFixed(2)}
+                </span>
+            `;
+                }
+            });
+        }
+
+        /* ===============================
+           CALCULAR HORAS
+        ================================ */
+        function calcularHoras(inicio, fim) {
+
+            if (!inicio || !fim) return 1;
+
+            const d1 = new Date(inicio);
+            const d2 = new Date(fim);
+            const diff = Math.abs(d2 - d1);
+
+            return Math.ceil(diff / (1000 * 60 * 60));
+        }
+
+        /* ===============================
+           ENVIAR WHATSAPP
+        ================================ */
+        function enviarWhats() {
+
+            if (!valorFinal) {
+                alert("Calcule a corrida primeiro.");
+                return;
+            }
+
+            const nome = document.getElementById("nome").value;
+            const telefone = document.getElementById("telefone").value;
+            const origem = document.getElementById("origem").value;
+            const destino = document.getElementById("destino").value;
+            const motorista = document.getElementById("motorista").value;
+
+            const msg = `
+🚗 Solicitação de Corrida
+
+👤 ${nome}
+📞 ${telefone}
+
+📍 ${origem}
+🏁 ${destino}
+
+📏 ${distanciaKM.toFixed(1)} km
+💰 Valor: R$ ${valorFinal.toFixed(2)}
+`;
+
+            window.open(`https://wa.me/${motorista}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+    </script>
+
+</body>
+
+</html>
