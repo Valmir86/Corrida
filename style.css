@@ -169,100 +169,126 @@ nav a:hover {
     padding: 40px 15px;
 }
 
-/* ===== FORMULÁRIO COMPACTO ===== */
+/* ===== FORMULÁRIO COMPACTO & PROFISSIONAL ===== */
 .form-box {
-    max-width: 650px;
-    /* antes ocupava a tela toda */
-    margin: auto;
-    padding: 20px;
+    max-width: 600px;
+    /* Levemente mais estreito para elegância */
+    margin: 40px auto;
+    padding: 25px;
     background: #0f1629;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-/* GRID COMPACTO */
-.form-box {
+    border-radius: 16px;
+    /* Bordas mais modernas */
+    border: 1px solid #1f2a44;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito dinâmico no card do formulário */
+.form-box:hover {
+    border-color: #00eaff55;
 }
 
 /* CAMPOS OCUPANDO LINHA INTEIRA */
 .form-box textarea,
 .form-box #origem,
 .form-box #destino,
+.form-box .full-width,
 .form-box #resultado,
 .form-box #map {
     grid-column: span 2;
 }
 
-/* INPUTS MENORES */
+/* LABELS ESTILIZADAS */
+.form-box label {
+    grid-column: span 2;
+    font-size: 11px;
+    text-transform: uppercase;
+    /* Aspecto mais técnico/profissional */
+    letter-spacing: 1px;
+    color: #8aa4ff;
+    margin-bottom: -10px;
+    /* Aproxima a label do campo */
+    font-weight: 700;
+}
+
+/* INPUTS COM FEEDBACK DINÂMICO */
 .form-box input,
 .form-box select,
 .form-box textarea {
-    padding: 8px 10px;
+    padding: 12px 14px;
     font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #1f2a44;
+    border-radius: 8px;
+    border: 2px solid #1f2a44;
+    /* Borda levemente mais grossa para foco */
     background: #0b1120;
     color: #fff;
     width: 100%;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-/* LABEL MAIS DISCRETA */
-.form-box label {
-    grid-column: span 2;
-    font-size: 12px;
-    color: #8aa4ff;
-    margin-top: 5px;
+/* Efeito de Foco (Dinâmico) */
+.form-box input:focus,
+.form-box select:focus,
+.form-box textarea:focus {
+    border-color: #00eaff;
+    background: #0f1629;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.2);
 }
 
-/* TEXTAREA MENOR */
-.form-box textarea {
-    min-height: 60px;
-    resize: none;
-}
-
-/* BOTÕES LADO A LADO */
+/* BOTÕES PROFISSIONAIS */
 .form-box button {
-    padding: 10px;
+    padding: 12px;
     font-size: 14px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #00eaff;
     color: #000;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: .3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .form-box button:hover {
-    transform: scale(1.03);
+    background: #00cfdf;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 234, 255, 0.3);
 }
 
-/* RESULTADO MAIS ENXUTO */
+.form-box button:active {
+    transform: translateY(0);
+}
+
+/* RESULTADO ENXUTO */
 .result {
-    padding: 10px;
+    grid-column: span 2;
+    padding: 15px;
     font-size: 14px;
-    background: #0b1120;
-    border-radius: 6px;
-}
-
-/* MAPA MENOR */
-#map {
-    height: 220px;
+    background: rgba(0, 234, 255, 0.05);
+    border: 1px dashed #00eaff55;
     border-radius: 8px;
-    margin-top: 5px;
+    color: #00eaff;
+    text-align: center;
 }
 
-/* ===== MAPA ===== */
+/* MAPA INTEGRADO */
 #map {
-    width: 100%;
-    height: 400px;
-    margin-top: 15px;
-    border-radius: 10px;
+    height: 250px;
+    border-radius: 12px;
+    border: 1px solid #1f2a44;
+    filter: grayscale(0.3) contrast(1.1);
+    /* Estética mais sóbria */
+    transition: filter 0.3s;
 }
 
+#map:hover {
+    filter: grayscale(0);
+}
 /* ===== FOOTER ===== */
 footer {
     text-align: center;
@@ -441,4 +467,111 @@ nav a.active::after {
     100% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
+}
+
+/* Efeito de Brilho e Elevação nos Botões */
+.market-btn,
+.form-box button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.market-btn::after,
+.form-box button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.market-btn:hover::after,
+.form-box button:hover::after {
+    left: 100%;
+}
+
+.market-btn:hover,
+.form-box button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 234, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+.market-btn:active,
+.form-box button:active {
+    transform: translateY(0);
+}
+
+/* Estilos do Modal de Login */
+.modal-admin {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    /* Efeito de vidro desfocado */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    padding: 40px;
+    border: 2px solid #00eaff;
+    border-radius: 15px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.form-login input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #000;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form-login input:focus {
+    border-color: #00eaff;
+}
+
+.form-login button {
+    width: 100%;
+    padding: 12px;
+    background: #00eaff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.form-login button:hover {
+    background: #00b8cc;
+    transform: scale(1.02);
 }
