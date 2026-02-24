@@ -5,20 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motorista Particular | Zona Sul SP</title>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places"></script>
-<!-- Favicon -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places"></script>
+    <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" type="favicon-32.png" sizes="32x32" href="favicon-32.png">
     <meta name="theme-color" content="#00eaff">
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="formulario.css">
+    
     <style>
 
     </style>
 </head>
 
 <body>
+    
 
     <!-- MENU -->
     <nav>
@@ -29,6 +32,8 @@
             <a class="anim-titulo" href="#sobre">Sobre</a>
             <a class="anim-titulo" href="#socios">Sócios</a>
             <a class="anim-titulo" href="#contato">Contato</a>
+            <a class="anim-titulo" href="javascript:void(0)" onclick="telaLogin()" style="color:#00eaff">Acesso Admin</a>
+
         </div>
     </nav>
 
@@ -54,22 +59,22 @@
     <!-- ===== MARKETING ===== -->
     <aside class="market-section" aria-labelledby="titulo-market">
         <div class="market-container">
-    
+
             <figure class="market-image">
                 <img src="/fast drive.jpg" alt="Transporte Executivo com conforto e segurança">
             </figure>
-    
+
             <article class="market-content">
                 <h2 id="titulo-market">Mobilidade com Conforto, Segurança e Pontualidade</h2>
-    
+
                 <p>Tenha uma experiência diferenciada em transporte particular na Zona Sul de São Paulo.</p>
                 <p>Aqui você agenda sua viagem com transparência.</p>
                 <p>Nosso compromisso é simples: proporcionar uma viagem segura.</p>
                 <p>Mais do que transporte, entregamos confiança.</p>
-    
+
                 <a href="#corrida" class="market-btn">Solicitar Cotação</a>
             </article>
-    
+
         </div>
     </aside>
 
@@ -104,7 +109,7 @@
             <select id="motorista">
                 <option value="5511941824692">Valmir carro hb20 preto</option>
                 <option value="5511988296001">Stephan carro onix vermelho</option>
-              
+
             </select>
             <label>Forma de Pagamento</label>
             <select id="pagamento">
@@ -119,7 +124,7 @@
 
             <div id="resultado" class="result"></div>
 
-            <button onclick="enviarWhats()">Enviar Cotação</button>
+            <button type="button" onclick="enviarCotacao()">Enviar Cotação</button>
 
             <div id="map"></div>
 
@@ -132,7 +137,7 @@
             <img src="/valmir.jpg" style="width:100px;border-radius:50%;border:2px solid #00eaff;">
             <span>VALMIR SILVA</span>
         </div>
-    
+
         <div class="card">
             <p>
                 Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo,
@@ -186,12 +191,24 @@
             <p>Entre em contato para corridas, parcerias ou desenvolvimento de sites.</p>
         </div>
     </section>
+    <div id="modalLogin" class="modal-admin">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharLogin()">&times;</span>
+            <h2 style="color:#00eaff; margin-bottom:10px;">Acesso Restrito</h2>
+            <div class="form-login">
+                <input type="text" id="userAdmin" placeholder="Usuário">
+                <input type="password" id="passAdmin" placeholder="Senha">
+                <button onclick="validarAcesso()">Entrar no Painel</button>
+            </div>
+            <div id="erroLogin" style="color: #ff4d4d; margin-top: 10px; display: none;">Dados incorretos!</div>
+        </div>
+    </div>
 
     <footer>
-       <p>© 2026 FAST DRIVE</p>
-<p style="font-size:12px;color:#666">
-    Sistema desenvolvido por Valmir Silva
-</p>
+        <p>© 2026 FAST DRIVE</p>
+        <p style="font-size:12px;color:#666">
+            Sistema desenvolvido por Valmir Silva
+        </p>
 
     </footer>
     <script>
@@ -271,6 +288,47 @@
 
             });
         }
+
+        async function enviarCotacao() {
+
+                if (!valorFinal || valorFinal <= 0) {
+                    alert("Calcule a corrida primeiro.");
+                    return;
+                }
+
+                try {
+
+                    const dados = {
+                        cliente: document.getElementById("nome").value,
+                        telefone: document.getElementById("telefone").value,
+                        origem: document.getElementById("origem").value,
+                        destino: document.getElementById("destino").value,
+                        distancia: distanciaKM.toFixed(2),
+                        valor: valorFinal.toFixed(2),
+                        tipo: document.getElementById("tipo").value,
+                        pagamento: document.getElementById("pagamento").value,
+                        motorista: document.getElementById("motorista").selectedOptions[0].text,
+                        data_saida: document.getElementById("data_saida").value,
+                        data_retorno: document.getElementById("data_retorno").value,
+                        paradas: document.getElementById("paradas").value,
+                        pedagio: document.getElementById("pedagio").value
+                    };
+
+                    await fetch("https://script.google.com/macros/s/AKfycbwHhvcKWeN8q2C9hXg4v3gxYcs1q2rHPwaspCVNpVxVVhoL7sbr1JXQu9QfNJdRaIf4Rg/exec", {
+                        method: "POST",
+                        body: JSON.stringify(dados)
+                    });
+
+                    enviarWhats();
+
+                    alert("✅ Corrida registrada!");
+
+                } catch (erro) {
+                    console.error(erro);
+                    alert("Erro ao salvar.");
+                }
+            }
+
 
         function enviarWhats() {
 
@@ -381,48 +439,108 @@
             });
         });
     </script>
-<script>
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".section, .hero, .market-section")
+            .forEach(el => observer.observe(el));
+    </script>
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511941824692?text=Olá%20Valmir,%20gostaria%20de%20solicitar%20uma%20corrida."
+        class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+    <script>
+        const whatsBtn = document.querySelector(".whatsapp-float");
+
+        whatsBtn.style.opacity = "0";
+        whatsBtn.style.pointerEvents = "none";
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                whatsBtn.style.opacity = "1";
+                whatsBtn.style.pointerEvents = "auto";
+            } else {
+                whatsBtn.style.opacity = "0";
+                whatsBtn.style.pointerEvents = "none";
             }
         });
-    }, { threshold: 0.2 });
 
-    document.querySelectorAll(".section, .hero, .market-section")
-        .forEach(el => observer.observe(el));
-</script>
+        // Abre o modal
+            function telaLogin() {
+                document.getElementById("modalLogin").style.display = "flex";
+            }
 
-<!-- BOTÃO WHATSAPP FLUTUANTE -->
-<a href="https://wa.me/5511941824692?text=Olá%20Valmir,%20gostaria%20de%20solicitar%20uma%20corrida."
-    class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+            // Fecha o modal
+            function fecharLogin() {
+                document.getElementById("modalLogin").style.display = "none";
+            }
 
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-</a>
-<script>
-    const whatsBtn = document.querySelector(".whatsapp-float");
+            // Valida as credenciais
+            function validarAcesso() {
+                    const user = document.getElementById("userAdmin").value;
+                    const pass = document.getElementById("passAdmin").value;
+                    const erro = document.getElementById("erroLogin");
 
-    whatsBtn.style.opacity = "0";
-    whatsBtn.style.pointerEvents = "none";
+                    if (user === "admin" && pass === "861077") {
 
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-            whatsBtn.style.opacity = "1";
-            whatsBtn.style.pointerEvents = "auto";
-        } else {
-            whatsBtn.style.opacity = "0";
-            whatsBtn.style.pointerEvents = "none";
-        }
-    });
-</script>
+                        localStorage.setItem("logado", "sim"); // 🔐 cria sessão
+                        window.location.href = "admin.html";  // abre painel admin
 
+                    } else {
+                        erro.style.display = "block";
+                        setTimeout(() => { erro.style.display = "none"; }, 3000);
+                    }
+                }
 
 
+            // Fechar se clicar fora do modal
+            window.onclick = function (event) {
+                let modal = document.getElementById("modalLogin");
+                if (event.target == modal) {
+                    fecharLogin();
+                }
+            }
+           
+    </script>
+<div class="tela-acesso">
+
+    <div class="card-acesso">
+
+        <h2>FAST DRIVE - Área do Cliente</h2>
+
+        <form action="login.php" method="POST">
+            <h3>Login</h3>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <form action="cadastro.php" method="POST">
+            <h3>Cadastro</h3>
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+
+    </div>
+
+</div>
 </body>
 
 </html>
-
 
 
 
