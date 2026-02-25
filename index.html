@@ -32,6 +32,7 @@
             <a class="anim-titulo" href="#sobre">Sobre</a>
             <a class="anim-titulo" href="#socios">Sócios</a>
             <a class="anim-titulo" href="#contato">Contato</a>
+            <a class="anim-titulo" href="javascript:void(0)" onclick="telaCliente()">Área Cliente</a>
             <a class="anim-titulo" href="javascript:void(0)" onclick="telaLogin()" style="color:#00eaff">Acesso Admin</a>
 
         </div>
@@ -77,7 +78,98 @@
 
         </div>
     </aside>
+<section id="como-funciona" class="como-funciona">
+    <div class="container">
 
+        <div class="titulo-secao">
+            <h2>Como <span>Funciona</span> o FastDrive</h2>
+            <p>Em apenas 4 passos simples, você solicita sua corrida com segurança, rapidez e conforto.</p>
+        </div>
+
+        <div class="passos">
+
+            <div class="passo">
+                <div class="icone">📍</div>
+                <div class="numero">01</div>
+                <h3>Informe seu Trajeto</h3>
+                <p>Digite o endereço de origem e destino para calcular sua corrida automaticamente.</p>
+            </div>
+
+            <div class="passo">
+                <div class="icone">👤</div>
+                <div class="numero">02</div>
+                <h3>Escolha seu Motorista</h3>
+                <p>Veja os motoristas disponíveis e selecione o profissional ideal para sua viagem.</p>
+            </div>
+
+            <div class="passo">
+                <div class="icone">💬</div>
+                <div class="numero">03</div>
+                <h3>Confirme pelo WhatsApp</h3>
+                <p>Receba todos os detalhes da corrida diretamente no seu WhatsApp.</p>
+            </div>
+
+            <div class="passo">
+                <div class="icone">🚗</div>
+                <div class="numero">04</div>
+                <h3>Viaje com Conforto</h3>
+                <p>Seu motorista chega no local combinado com segurança e pontualidade.</p>
+            </div>
+
+        </div>
+<section id="vantagens">
+    <div class="container">
+
+        <div class="titulo">
+            <h2>Por que escolher a <span>FAST DRIVE</span>?</h2>
+            <p>
+                Combinamos tecnologia de ponta com o melhor serviço de transporte executivo de São Paulo.
+            </p>
+        </div>
+
+        <div class="grid-vantagens">
+
+            <div class="card">
+                <div class="icone">🛡️</div>
+                <h3>Segurança Total</h3>
+                <p>Motoristas verificados com antecedentes checados e rastreamento em tempo real.</p>
+            </div>
+
+            <div class="card">
+                <div class="icone">⚡</div>
+                <h3>Velocidade</h3>
+                <p>Cotação instantânea e motoristas disponíveis em minutos. Sem complicação.</p>
+            </div>
+
+            <div class="card">
+                <div class="icone">🕒</div>
+                <h3>Disponível 24h</h3>
+                <p>Atendimento a qualquer hora, para aeroportos, reuniões e eventos.</p>
+            </div>
+
+            <div class="card">
+                <div class="icone">⭐</div>
+                <h3>Frota Premium</h3>
+                <p>Veículos executivos modernos com conforto e sofisticação.</p>
+            </div>
+
+            <div class="card">
+                <div class="icone">📍</div>
+                <h3>Rotas Inteligentes</h3>
+                <p>Integração com GPS para garantir sempre o melhor trajeto.</p>
+            </div>
+
+            <div class="card">
+                <div class="icone">💳</div>
+                <h3>Preço Justo</h3>
+                <p>Valor transparente por quilômetro. Sem taxas escondidas.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+    </div>
+</section>
     <!-- CALCULAR CORRIDA -->
     <section id="corrida" class="section">
         <h2>Calcular Corrida</h2>
@@ -508,13 +600,46 @@
                 if (event.target == modal) {
                     fecharLogin();
                 }
-                </script >
+            }
+            function telaCliente() {
+                    document.getElementById("modalCliente").style.display = "flex";
+                }
+
+                function fecharCliente() {
+                    document.getElementById("modalCliente").style.display = "none";
+                }
+           
+    </script>
+<!-- MODAL LOGIN CLIENTE -->
+<div id="modalCliente" class="modal-admin">
+    <div class="modal-content">
+        <span class="close-btn" onclick="fecharCliente()">&times;</span>
+
+        <h2 style="color:#00eaff;">FAST DRIVE - Área do Cliente</h2>
+
+        <form action="login.php" method="POST">
+            <h3>Login</h3>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <form action="cadastro.php" method="POST">
+            <h3>Cadastro</h3>
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+
+    </div>
+</div>
 </body>
 
 </html>
-
-
-
 
 
 
