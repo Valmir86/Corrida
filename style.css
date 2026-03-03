@@ -169,29 +169,38 @@ nav a:hover {
     padding: 40px 15px;
 }
 
-/* ===== FORMULÁRIO COMPACTO & PROFISSIONAL ===== */
+/* ===== FORMULÁRIO ULTRA-COMPACTO & MODERNO ===== */
 .form-box {
-    max-width: 600px;
-    /* Levemente mais estreito para elegância */
-    margin: 40px auto;
-    padding: 25px;
-    background: #0f1629;
-    border-radius: 16px;
-    /* Bordas mais modernas */
-    border: 1px solid #1f2a44;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 480px;
+    /* Reduzi para ser mais elegante */
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(15, 22, 41, 0.95);
+    /* Efeito semi-transparente */
+    border-radius: 20px;
+    border: 1px solid rgba(0, 234, 255, 0.15);
+    backdrop-filter: blur(10px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    transition: transform 0.3s ease;
+    gap: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Efeito dinâmico no card do formulário */
-.form-box:hover {
-    border-color: #00eaff55;
+/* Micro-interação de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-/* CAMPOS OCUPANDO LINHA INTEIRA */
+/* Campos em largura total */
 .form-box textarea,
 .form-box #origem,
 .form-box #destino,
@@ -201,120 +210,97 @@ nav a:hover {
     grid-column: span 2;
 }
 
-/* LABELS ESTILIZADAS */
+/* LABELS MINIMALISTAS */
 .form-box label {
     grid-column: span 2;
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
-    /* Aspecto mais técnico/profissional */
-    letter-spacing: 1px;
-    color: #8aa4ff;
-    margin-bottom: -10px;
-    /* Aproxima a label do campo */
-    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #00eaff;
+    opacity: 0.8;
+    margin-bottom: -8px;
+    margin-left: 4px;
+    font-weight: 600;
 }
 
-/* INPUTS COM FEEDBACK DINÂMICO */
+/* INPUTS SLIM */
 .form-box input,
 .form-box select,
 .form-box textarea {
-    padding: 12px 14px;
-    font-size: 14px;
-    border-radius: 8px;
-    border: 2px solid #1f2a44;
-    /* Borda levemente mais grossa para foco */
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 10px;
+    border: 1px solid #1f2a44;
     background: #0b1120;
     color: #fff;
-    width: 100%;
-    outline: none;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
-/* Efeito de Foco (Dinâmico) */
-.form-box input:focus,
-.form-box select:focus,
-.form-box textarea:focus {
+.form-box input:focus {
     border-color: #00eaff;
-    background: #0f1629;
-    box-shadow: 0 0 8px rgba(0, 234, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.1);
+    transform: translateY(-1px);
 }
 
-/* BOTÕES PROFISSIONAIS */
+/* BOTÃO COM EFEITO GLOW */
 .form-box button {
+    grid-column: span 2;
     padding: 12px;
-    font-size: 14px;
     border: none;
-    border-radius: 8px;
-    background: #00eaff;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #00eaff, #008cff);
     color: #000;
-    font-weight: 700;
-    cursor: pointer;
+    font-weight: 800;
+    font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .form-box button:hover {
-    background: #00cfdf;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 234, 255, 0.3);
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+    transform: scale(1.02);
 }
 
 .form-box button:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
-/* RESULTADO ENXUTO */
+/* RESULTADO DISCRETO */
 .result {
     grid-column: span 2;
-    padding: 15px;
-    font-size: 14px;
-    background: rgba(0, 234, 255, 0.05);
-    border: 1px dashed #00eaff55;
-    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    background: rgba(0, 234, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 234, 255, 0.2);
     color: #00eaff;
     text-align: center;
 }
 
-/* MAPA INTEGRADO */
+/* MAPA INTEGRADO OTIMIZADO */
 #map {
-    height: 250px;
+    height: 200px;
+    /* Menor para economizar espaço */
     border-radius: 12px;
     border: 1px solid #1f2a44;
-    filter: grayscale(0.3) contrast(1.1);
-    /* Estética mais sóbria */
-    transition: filter 0.3s;
+    filter: saturate(0.8) contrast(1.1);
+    transition: 0.4s;
 }
 
 #map:hover {
-    filter: grayscale(0);
+    filter: saturate(1.1);
 }
-/* ===== FOOTER ===== */
+
+/* FOOTER */
 footer {
-    text-align: center;
-    padding: 25px;
-    background: #0b0f14;
-    border-top: 1px solid #00eaff22;
-    color: #aaa;
-}
-
-/* ===== ANIMAÇÕES ===== */
-.anim-titulo,
-.anim-sub,
-.anim-logo {
-    animation: fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    padding: 20px;
+    font-size: 12px;
+    color: #555;
+    background: transparent;
 }
 
 /* ===== RESPONSIVIDADE ===== */
@@ -673,4 +659,35 @@ nav a.active::after {
     .passo {
         padding: 30px 15px;
     }
+}
+/* Classes de Animação */
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Efeito de digitação para o Hero */
+.typing {
+    border-right: 3px solid #00eaff;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/* Efeito Hover nos Cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 234, 255, 0.2);
 }
