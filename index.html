@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motorista Particular | Zona Sul SP</title>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places"></script>
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" type="favicon-32.png" sizes="32x32" href="favicon-32.png">
-    <meta name="theme-color" content="#00eaff">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="formulario.css">
-    
-    <style>
-
-    </style>
-</head>
-
-<body>
-    
-
-    <!-- MENU -->
-    <nav>
-        <h2 class="anim-logo">Motorista Zona Sul</h2>
-        <div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Motorista Particular | Zona Sul SP</title>
+      <script
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places"></script>
+      <!-- Favicon -->
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <link rel="icon" type="favicon-32.png" sizes="32x32" href="favicon-32.png">
+      <meta name="theme-color" content="#00eaff">
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="formulario.css">
+      <style>
+      </style>
+   </head>
+   <body>
+      <!-- MENU -->
+      <nav>
+         <h2 class="anim-logo">Motorista Zona Sul</h2>
+         <div>
             <a class="anim-titulo" href="#inicio">Início</a>
             <a class="anim-titulo" href="#corrida">Calcular Corrida</a>
             <a class="anim-titulo" href="#sobre">Sobre</a>
@@ -34,618 +28,550 @@
             <a class="anim-titulo" href="#contato">Contato</a>
             <a class="anim-titulo" href="javascript:void(0)" onclick="telaCliente()">Área Cliente</a>
             <a class="anim-titulo" href="javascript:void(0)" onclick="telaLogin()" style="color:#00eaff">Acesso Admin</a>
-
-        </div>
-    </nav>
-
-    <div class="spacer"></div>
-
-    <!-- INÍCIO -->
-    <section id="inicio" class="hero">
-        <img src="/fast_drive.jpg">
-        <div>
+         </div>
+      </nav>
+      <div class="spacer"></div>
+      <!-- INÍCIO -->
+      <section id="inicio" class="hero">
+         <img src="/fast_drive.jpg">
+         <div>
             <h2 class="anim-titulo">Transporte Executivo Particular</h2>
-
             <p class="anim-sub">
-                Atendimento exclusivo na Zona Sul de São Paulo.
+               Atendimento exclusivo na Zona Sul de São Paulo.
             </p>
-
             <p class="anim-logo">
-                FAST DRIVE
+               FAST DRIVE
             </p>
-
-        </div>
-
-    </section>
-    <!-- ===== MARKETING ===== -->
-    <aside class="market-section" aria-labelledby="titulo-market">
-        <div class="market-container">
-
+         </div>
+      </section>
+      <!-- ===== MARKETING ===== -->
+      <aside class="market-section" aria-labelledby="titulo-market">
+         <div class="market-container">
             <figure class="market-image">
-                <img src="/fast drive.jpg" alt="Transporte Executivo com conforto e segurança">
+               <img src="/fast drive.jpg" alt="Transporte Executivo com conforto e segurança">
             </figure>
-
             <article class="market-content">
-                <h2 id="titulo-market">Mobilidade com Conforto, Segurança e Pontualidade</h2>
-
-                <p>Tenha uma experiência diferenciada em transporte particular na Zona Sul de São Paulo.</p>
-                <p>Aqui você agenda sua viagem com transparência.</p>
-                <p>Nosso compromisso é simples: proporcionar uma viagem segura.</p>
-                <p>Mais do que transporte, entregamos confiança.</p>
-
-                <a href="#corrida" class="market-btn">Solicitar Cotação</a>
+               <h2 id="titulo-market">Mobilidade com Conforto, Segurança e Pontualidade</h2>
+               <p>Tenha uma experiência diferenciada em transporte particular na Zona Sul de São Paulo.</p>
+               <p>Aqui você agenda sua viagem com transparência.</p>
+               <p>Nosso compromisso é simples: proporcionar uma viagem segura.</p>
+               <p>Mais do que transporte, entregamos confiança.</p>
+               <a href="#corrida" class="market-btn">Solicitar Cotação</a>
             </article>
-
-        </div>
-    </aside>
-<section id="como-funciona" class="como-funciona">
-    <div class="container">
-
-        <div class="titulo-secao">
-            <h2>Como <span>Funciona</span> o FastDrive</h2>
-            <p>Em apenas 4 passos simples, você solicita sua corrida com segurança, rapidez e conforto.</p>
-        </div>
-
-        <div class="passos">
-
-            <div class="passo">
-                <div class="icone">📍</div>
-                <div class="numero">01</div>
-                <h3>Informe seu Trajeto</h3>
-                <p>Digite o endereço de origem e destino para calcular sua corrida automaticamente.</p>
+         </div>
+      </aside>
+      <section id="como-funciona" class="como-funciona">
+         <div class="container">
+            <div class="titulo-secao">
+               <h2>Como <span>Funciona</span> o FastDrive</h2>
+               <p>Em apenas 4 passos simples, você solicita sua corrida com segurança, rapidez e conforto.</p>
             </div>
-
-            <div class="passo">
-                <div class="icone">👤</div>
-                <div class="numero">02</div>
-                <h3>Escolha seu Motorista</h3>
-                <p>Veja os motoristas disponíveis e selecione o profissional ideal para sua viagem.</p>
+            <div class="passos">
+               <div class="passo">
+                  <div class="icone">📍</div>
+                  <div class="numero">01</div>
+                  <h3>Informe seu Trajeto</h3>
+                  <p>Digite o endereço de origem e destino para calcular sua corrida automaticamente.</p>
+               </div>
+               <div class="passo">
+                  <div class="icone">👤</div>
+                  <div class="numero">02</div>
+                  <h3>Escolha seu Motorista</h3>
+                  <p>Veja os motoristas disponíveis e selecione o profissional ideal para sua viagem.</p>
+               </div>
+               <div class="passo">
+                  <div class="icone">💬</div>
+                  <div class="numero">03</div>
+                  <h3>Confirme pelo WhatsApp</h3>
+                  <p>Receba todos os detalhes da corrida diretamente no seu WhatsApp.</p>
+               </div>
+               <div class="passo">
+                  <div class="icone">🚗</div>
+                  <div class="numero">04</div>
+                  <h3>Viaje com Conforto</h3>
+                  <p>Seu motorista chega no local combinado com segurança e pontualidade.</p>
+               </div>
             </div>
-
-            <div class="passo">
-                <div class="icone">💬</div>
-                <div class="numero">03</div>
-                <h3>Confirme pelo WhatsApp</h3>
-                <p>Receba todos os detalhes da corrida diretamente no seu WhatsApp.</p>
-            </div>
-
-            <div class="passo">
-                <div class="icone">🚗</div>
-                <div class="numero">04</div>
-                <h3>Viaje com Conforto</h3>
-                <p>Seu motorista chega no local combinado com segurança e pontualidade.</p>
-            </div>
-
-        </div>
-<section id="vantagens">
-    <div class="container">
-
-        <div class="titulo">
-            <h2>Por que escolher a <span>FAST DRIVE</span>?</h2>
-            <p>
-                Combinamos tecnologia de ponta com o melhor serviço de transporte executivo de São Paulo.
-            </p>
-        </div>
-
-        <div class="grid-vantagens">
-
-            <div class="card">
-                <div class="icone">🛡️</div>
-                <h3>Segurança Total</h3>
-                <p>Motoristas verificados com antecedentes checados e rastreamento em tempo real.</p>
-            </div>
-
-            <div class="card">
-                <div class="icone">⚡</div>
-                <h3>Velocidade</h3>
-                <p>Cotação instantânea e motoristas disponíveis em minutos. Sem complicação.</p>
-            </div>
-
-            <div class="card">
-                <div class="icone">🕒</div>
-                <h3>Disponível 24h</h3>
-                <p>Atendimento a qualquer hora, para aeroportos, reuniões e eventos.</p>
-            </div>
-
-            <div class="card">
-                <div class="icone">⭐</div>
-                <h3>Frota Premium</h3>
-                <p>Veículos executivos modernos com conforto e sofisticação.</p>
-            </div>
-
-            <div class="card">
-                <div class="icone">📍</div>
-                <h3>Rotas Inteligentes</h3>
-                <p>Integração com GPS para garantir sempre o melhor trajeto.</p>
-            </div>
-
-            <div class="card">
-                <div class="icone">💳</div>
-                <h3>Preço Justo</h3>
-                <p>Valor transparente por quilômetro. Sem taxas escondidas.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-    </div>
-</section>
-    <!-- CALCULAR CORRIDA -->
-    <section id="corrida" class="section">
-        <h2>Calcular Corrida</h2>
-
-        <div class="form-box">
-
+            <section id="vantagens">
+               <div class="container">
+                  <div class="titulo">
+                     <h2>Por que escolher a <span>FAST DRIVE</span>?</h2>
+                     <p>
+                        Combinamos tecnologia de ponta com o melhor serviço de transporte executivo de São Paulo.
+                     </p>
+                  </div>
+                  <div class="grid-vantagens">
+                     <div class="card">
+                        <div class="icone">🛡️</div>
+                        <h3>Segurança Total</h3>
+                        <p>Motoristas verificados com antecedentes checados e rastreamento em tempo real.</p>
+                     </div>
+                     <div class="card">
+                        <div class="icone">⚡</div>
+                        <h3>Velocidade</h3>
+                        <p>Cotação instantânea e motoristas disponíveis em minutos. Sem complicação.</p>
+                     </div>
+                     <div class="card">
+                        <div class="icone">🕒</div>
+                        <h3>Disponível 24h</h3>
+                        <p>Atendimento a qualquer hora, para aeroportos, reuniões e eventos.</p>
+                     </div>
+                     <div class="card">
+                        <div class="icone">⭐</div>
+                        <h3>Frota Premium</h3>
+                        <p>Veículos executivos modernos com conforto e sofisticação.</p>
+                     </div>
+                     <div class="card">
+                        <div class="icone">📍</div>
+                        <h3>Rotas Inteligentes</h3>
+                        <p>Integração com GPS para garantir sempre o melhor trajeto.</p>
+                     </div>
+                     <div class="card">
+                        <div class="icone">💳</div>
+                        <h3>Preço Justo</h3>
+                        <p>Valor transparente por quilômetro. Sem taxas escondidas.</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </section>
+      <!-- CALCULAR CORRIDA -->
+      <section id="corrida" class="section">
+         <h2>Calcular Corrida</h2>
+         <div class="form-box">
             <input id="nome" placeholder="Nome do passageiro">
             <input id="telefone" placeholder="Telefone">
-
             <input id="origem" placeholder="Endereço de saída">
             <input id="destino" placeholder="Endereço de destino">
-
             <textarea id="paradas" placeholder="Paradas intermediárias (se houver)"></textarea>
-
             <label>Data e hora de saída</label>
             <input type="datetime-local" id="data_saida">
-
             <label>Data e hora de retorno</label>
             <input type="datetime-local" id="data_retorno">
-
             <label>Tipo de viagem</label>
             <select id="tipo">
-                <option>Apenas Ida</option>
-                <option>Ida e Volta</option>
-                <option>À disposição</option>
+               <option>Apenas Ida</option>
+               <option>Ida e Volta</option>
+               <option>À disposição</option>
             </select>
-
             <label>Motorista</label>
             <select id="motorista">
-                <option value="5511941824692">Valmir carro hb20 preto</option>
-                <option value="5511988296001">Stephan carro onix vermelho</option>
-
+               <option value="5511941824692">Valmir carro hb20 preto</option>
+               <option value="5511988296001">Stephan carro onix vermelho</option>
             </select>
             <label>Forma de Pagamento</label>
             <select id="pagamento">
-                <option value="Pix">Pix</option>
-                <option value="Dinheiro">Dinheiro</option>
+               <option value="Pix">Pix</option>
+               <option value="Dinheiro">Dinheiro</option>
             </select>
-
-
             <input id="pedagio" type="number" placeholder="Valor de pedágios (se houver)">
-
             <button onclick="calcularRota()">Calcular</button>
-
             <div id="resultado" class="result"></div>
-
             <button type="button" onclick="enviarCotacao()">Enviar Cotação</button>
-
             <div id="map"></div>
-
-        </div>
-    </section>
-    <!-- SOBRE -->
-    <section id="sobre" class="section">
-        <h2 class="anim-logo">Sobre Mim</h2>
-        <div style="display:flex;align-items:center;gap:20px;">
+         </div>
+      </section>
+      <!-- SOBRE -->
+      <section id="sobre" class="section">
+         <h2 class="anim-logo">Sobre Mim</h2>
+         <div style="display:flex;align-items:center;gap:20px;">
             <img src="/valmir.jpg" style="width:100px;border-radius:50%;border:2px solid #00eaff;">
             <span>VALMIR SILVA</span>
-        </div>
-
-        <div class="card">
+         </div>
+         <div class="card">
             <p>
-                Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo,
-                oferecendo transporte seguro, pontual e personalizado.
+               Sou <b>motorista particular profissional</b> atuando na região da Zona Sul de São Paulo,
+               oferecendo transporte seguro, pontual e personalizado.
             </p>
             <br>
             <p>
-                Além do transporte executivo, também atuo como <b>desenvolvedor de sites</b>,
-                criando soluções digitais para motoristas, empresas e profissionais autônomos
-                que desejam modernizar seus atendimentos.
+               Além do transporte executivo, também atuo como <b>desenvolvedor de sites</b>,
+               criando soluções digitais para motoristas, empresas e profissionais autônomos
+               que desejam modernizar seus atendimentos.
             </p>
             <br>
             <p>
-                Este sistema foi desenvolvido por mim para oferecer transparência no cálculo
-                das corridas e facilitar o agendamento direto com o cliente.
+               Este sistema foi desenvolvido por mim para oferecer transparência no cálculo
+               das corridas e facilitar o agendamento direto com o cliente.
             </p>
-        </div>
-    </section>
-
-
-    <!-- SÓCIOS -->
-    <section id="socios" class="section">
-        <h2 class="anim-logo">Sócios e Patrocinadores</h2>
-
-        <div class="card">
+         </div>
+      </section>
+      <!-- SÓCIOS -->
+      <section id="socios" class="section">
+         <h2 class="anim-logo">Sócios e Patrocinadores</h2>
+         <div class="card">
             <p>
-                Empresas, motoristas ou investidores que desejarem participar do projeto,
-                divulgar serviços ou integrar parceria podem entrar em contato.
+               Empresas, motoristas ou investidores que desejarem participar do projeto,
+               divulgar serviços ou integrar parceria podem entrar em contato.
             </p>
             <br>
             <p>
-                Estamos abertos a:
+               Estamos abertos a:
             </p>
             <ul>
-                <li>Parcerias com motoristas</li>
-                <li>Publicidade local</li>
-                <li>Integração tecnológica</li>
-                <li>Expansão do atendimento</li>
+               <li>Parcerias com motoristas</li>
+               <li>Publicidade local</li>
+               <li>Integração tecnológica</li>
+               <li>Expansão do atendimento</li>
             </ul>
-        </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato" class="section">
-        <h2 class="anim-logo">Contato</h2>
-
-        <div class="card">
+         </div>
+      </section>
+      <!-- CONTATO -->
+      <section id="contato" class="section">
+         <h2 class="anim-logo">Contato</h2>
+         <div class="card">
             <p><b>WhatsApp / Telefone:</b></p>
             <h3 style="color:#00eaff">11 94182-4692</h3>
             <br>
             <p>Entre em contato para corridas, parcerias ou desenvolvimento de sites.</p>
-        </div>
-    </section>
-    <div id="modalLogin" class="modal-admin">
-        <div class="modal-content">
+         </div>
+      </section>
+      <div id="modalLogin" class="modal-admin">
+         <div class="modal-content">
             <span class="close-btn" onclick="fecharLogin()">&times;</span>
             <h2 style="color:#00eaff; margin-bottom:10px;">Acesso Restrito</h2>
             <div class="form-login">
-                <input type="text" id="userAdmin" placeholder="Usuário">
-                <input type="password" id="passAdmin" placeholder="Senha">
-                <button onclick="validarAcesso()">Entrar no Painel</button>
+               <input type="text" id="userAdmin" placeholder="Usuário">
+               <input type="password" id="passAdmin" placeholder="Senha">
+               <button onclick="validarAcesso()">Entrar no Painel</button>
             </div>
             <div id="erroLogin" style="color: #ff4d4d; margin-top: 10px; display: none;">Dados incorretos!</div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 FAST DRIVE</p>
-        <p style="font-size:12px;color:#666">
+         </div>
+      </div>
+      <footer>
+         <p>© 2026 FAST DRIVE</p>
+         <p style="font-size:12px;color:#666">
             Sistema desenvolvido por Valmir Silva
-        </p>
-        <ul>
-        <li><a href="https://portifolio-amber-seven-43.vercel.app/#contato" target="_blank">Portfólio</a></li>
-        <li><a href="https://www.linkedin.com/in/valmir-silva1" target="_blank">LinkedIn</a></li>
-        </ul>
-
-    </footer>
-    <script>
-        let map;
-        let directionsService;
-        let directionsRenderer;
-
-        let distanciaKM = 0;
-        let valorFinal = 0;
-
-        function initMap() {
-
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -23.5505, lng: -46.6333 },
-                zoom: 12
-            });
-
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-        }
-
-        /* Inicializa o mapa quando a página carrega */
-        window.onload = initMap;
-
-        function calcularRota() {
-
-            const origem = document.getElementById("origem").value;
-            const destino = document.getElementById("destino").value;
-            const pedagio = parseFloat(document.getElementById("pedagio").value) || 0;
-
-            if (!origem || !destino) {
-                alert("Preencha origem e destino.");
-                return;
-            }
-
-            const request = {
-                origin: origem,
-                destination: destino,
-                travelMode: google.maps.TravelMode.DRIVING
-            };
-
-            directionsService.route(request, function (result, status) {
-
-                if (status === "OK") {
-
-                    directionsRenderer.setDirections(result);
-
-                    const route = result.routes[0].legs[0];
-
-                    /* Distância real vinda do Google */
-                    distanciaKM = route.distance.value / 1000;
-
-                    /* REGRA DE PREÇO */
-                    if (distanciaKM <= 3) {
-                        valorFinal = 10;
-                    } else {
-                        let excedente = distanciaKM - 3;
-                        valorFinal = 10 + (excedente * 3.40);
-                    }
-
-                    valorFinal += pedagio;
-
-                    document.getElementById("resultado").innerHTML =
-                        `<h3>Resumo da Corrida</h3>
-                 📏 Distância: ${distanciaKM.toFixed(2)} km <br>
-                 ⏱️ Tempo estimado: ${route.duration.text} <br>
-                 💰 Pedágio: R$ ${pedagio.toFixed(2)} <br><br>
-    
-                 <strong style="font-size:24px;color:#00eaff">
-                 Valor Total: R$ ${valorFinal.toFixed(2)}
-                 </strong>`;
-
-                } else {
-                    alert("Não foi possível calcular a rota.");
-                }
-
-            });
-        }
-
-        async function enviarCotacao() {
-
-                if (!valorFinal || valorFinal <= 0) {
-                    alert("Calcule a corrida primeiro.");
-                    return;
-                }
-
-                try {
-
-                    const dados = {
-                        cliente: document.getElementById("nome").value,
-                        telefone: document.getElementById("telefone").value,
-                        origem: document.getElementById("origem").value,
-                        destino: document.getElementById("destino").value,
-                        distancia: distanciaKM.toFixed(2),
-                        valor: valorFinal.toFixed(2),
-                        tipo: document.getElementById("tipo").value,
-                        pagamento: document.getElementById("pagamento").value,
-                        motorista: document.getElementById("motorista").selectedOptions[0].text,
-                        data_saida: document.getElementById("data_saida").value,
-                        data_retorno: document.getElementById("data_retorno").value,
-                        paradas: document.getElementById("paradas").value,
-                        pedagio: document.getElementById("pedagio").value
-                    };
-
-                    await fetch("https://script.google.com/macros/s/AKfycbwHhvcKWeN8q2C9hXg4v3gxYcs1q2rHPwaspCVNpVxVVhoL7sbr1JXQu9QfNJdRaIf4Rg/exec", {
-                        method: "POST",
-                        body: JSON.stringify(dados)
-                    });
-
-                    enviarWhats();
-
-                    alert("✅ Corrida registrada!");
-
-                } catch (erro) {
-                    console.error(erro);
-                    alert("Erro ao salvar.");
-                }
-            }
-
-
-        function enviarWhats() {
-
-            const nome = document.getElementById("nome").value;
-            const telefone = document.getElementById("telefone").value;
-            const origem = document.getElementById("origem").value;
-            const destino = document.getElementById("destino").value;
-            const paradas = document.getElementById("paradas").value;
-            const data_saida = document.getElementById("data_saida").value;
-            const data_retorno = document.getElementById("data_retorno").value;
-            const tipo = document.getElementById("tipo").value;
-            const motorista = document.getElementById("motorista").value;
-            const pagamento = document.getElementById("pagamento").value;
-
-            if (!valorFinal) {
-                alert("Calcule a corrida primeiro.");
-                return;
-            }
-
-            let msg =
-                `🚗 *COTAÇÃO DE CORRIDA*
-    
-    👤 ${nome}
-    📞 ${telefone}
-    
-    📍 Origem: ${origem}
-    📍 Destino: ${destino}
-    🛑 Paradas: ${paradas}
-    
-    📅 Saída: ${data_saida}
-    📅 Retorno: ${data_retorno}
-    🧭 Tipo: ${tipo}
-    
-    💳 Pagamento: ${pagamento}
-    
-    📏 Distância: ${distanciaKM.toFixed(2)} km
-    💰 Valor: R$ ${valorFinal.toFixed(2)}
-    `;
-
-            const url = `https://wa.me/${motorista}?text=${encodeURIComponent(msg)}`;
-            window.open(url, "_blank");
-        }
-    </script>
-
-
-    <!-- Code injected by live-server -->
-    <script>
-        // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function () {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function (msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
-        }
-        else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
-        // ]]>
-    </script>
-
-    <script>
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll("nav a");
-
-        window.addEventListener("scroll", () => {
-
-            let current = "";
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                const sectionHeight = section.clientHeight;
-
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-
-                if (link.getAttribute("href") === "#" + current) {
-                    link.classList.add("active");
-                }
-            });
-        });
-    </script>
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll(".section, .hero, .market-section")
-            .forEach(el => observer.observe(el));
-    </script>
-
-    <!-- BOTÃO WHATSAPP FLUTUANTE -->
-    <a href="https://wa.me/5511941824692?text=Olá%20Valmir,%20gostaria%20de%20solicitar%20uma%20corrida."
-        class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-    </a>
-    <script>
-        const whatsBtn = document.querySelector(".whatsapp-float");
-
-        whatsBtn.style.opacity = "0";
-        whatsBtn.style.pointerEvents = "none";
-
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
-                whatsBtn.style.opacity = "1";
-                whatsBtn.style.pointerEvents = "auto";
-            } else {
-                whatsBtn.style.opacity = "0";
-                whatsBtn.style.pointerEvents = "none";
-            }
-        });
-
-        // Abre o modal
-            function telaLogin() {
-                document.getElementById("modalLogin").style.display = "flex";
-            }
-
-            // Fecha o modal
-            function fecharLogin() {
-                document.getElementById("modalLogin").style.display = "none";
-            }
-
-            // Valida as credenciais
-            function validarAcesso() {
-                    const user = document.getElementById("userAdmin").value;
-                    const pass = document.getElementById("passAdmin").value;
-                    const erro = document.getElementById("erroLogin");
-
-                    if (user === "admin" && pass === "861077") {
-
-                        localStorage.setItem("logado", "sim"); // 🔐 cria sessão
-                        window.location.href = "admin.html";  // abre painel admin
-
-                    } else {
-                        erro.style.display = "block";
-                        setTimeout(() => { erro.style.display = "none"; }, 3000);
-                    }
-                }
-
-
-            // Fechar se clicar fora do modal
-            window.onclick = function (event) {
-                let modal = document.getElementById("modalLogin");
-                if (event.target == modal) {
-                    fecharLogin();
-                }
-            }
-            function telaCliente() {
-                    document.getElementById("modalCliente").style.display = "flex";
-                }
-
-                function fecharCliente() {
-                    document.getElementById("modalCliente").style.display = "none";
-                }
-           
-    </script>
-<!-- MODAL LOGIN CLIENTE -->
-<div id="modalCliente" class="modal-admin">
-    <div class="modal-content">
-        <span class="close-btn" onclick="fecharCliente()">&times;</span>
-
-        <h2 style="color:#00eaff;">FAST DRIVE - Área do Cliente</h2>
-
-        <form action="login.php" method="POST">
-            <h3>Login</h3>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-
-        <div class="divider"></div>
-
-        <form action="cadastro.php" method="POST">
-            <h3>Cadastro</h3>
-            <input type="text" name="nome" placeholder="Nome" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="telefone" placeholder="Telefone" required>
-            <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit" class="btn-cadastro">Cadastrar</button>
-        </form>
-
-    </div>
-</div>
-</body>
-
+         </p>
+         <ul>
+            <li><a href="https://portifolio-amber-seven-43.vercel.app/#contato" target="_blank">Portfólio</a></li>
+            <li><a href="https://www.linkedin.com/in/valmir-silva1" target="_blank">LinkedIn</a></li>
+         </ul>
+      </footer>
+      <script>
+         let map;
+         let directionsService;
+         let directionsRenderer;
+         
+         let distanciaKM = 0;
+         let valorFinal = 0;
+         
+         function initMap() {
+         
+             map = new google.maps.Map(document.getElementById("map"), {
+                 center: { lat: -23.5505, lng: -46.6333 },
+                 zoom: 12
+             });
+         
+             directionsService = new google.maps.DirectionsService();
+             directionsRenderer = new google.maps.DirectionsRenderer();
+             directionsRenderer.setMap(map);
+         }
+         
+         /* Inicializa o mapa quando a página carrega */
+         window.onload = initMap;
+         
+         function calcularRota() {
+         
+             const origem = document.getElementById("origem").value;
+             const destino = document.getElementById("destino").value;
+             const pedagio = parseFloat(document.getElementById("pedagio").value) || 0;
+         
+             if (!origem || !destino) {
+                 alert("Preencha origem e destino.");
+                 return;
+             }
+         
+             const request = {
+                 origin: origem,
+                 destination: destino,
+                 travelMode: google.maps.TravelMode.DRIVING
+             };
+         
+             directionsService.route(request, function (result, status) {
+         
+                 if (status === "OK") {
+         
+                     directionsRenderer.setDirections(result);
+         
+                     const route = result.routes[0].legs[0];
+         
+                     /* Distância real vinda do Google */
+                     distanciaKM = route.distance.value / 1000;
+         
+                     /* REGRA DE PREÇO */
+                     if (distanciaKM <= 3) {
+                         valorFinal = 10;
+                     } else {
+                         let excedente = distanciaKM - 3;
+                         valorFinal = 10 + (excedente * 3.40);
+                     }
+         
+                     valorFinal += pedagio;
+         
+                     document.getElementById("resultado").innerHTML =
+                         `<h3>Resumo da Corrida</h3>
+                  📏 Distância: ${distanciaKM.toFixed(2)} km <br>
+                  ⏱️ Tempo estimado: ${route.duration.text} <br>
+                  💰 Pedágio: R$ ${pedagio.toFixed(2)} <br><br>
+         
+                  <strong style="font-size:24px;color:#00eaff">
+                  Valor Total: R$ ${valorFinal.toFixed(2)}
+                  </strong>`;
+         
+                 } else {
+                     alert("Não foi possível calcular a rota.");
+                 }
+         
+             });
+         }
+         
+         async function enviarCotacao() {
+         
+                 if (!valorFinal || valorFinal <= 0) {
+                     alert("Calcule a corrida primeiro.");
+                     return;
+                 }
+         
+                 try {
+         
+                     const dados = {
+                         cliente: document.getElementById("nome").value,
+                         telefone: document.getElementById("telefone").value,
+                         origem: document.getElementById("origem").value,
+                         destino: document.getElementById("destino").value,
+                         distancia: distanciaKM.toFixed(2),
+                         valor: valorFinal.toFixed(2),
+                         tipo: document.getElementById("tipo").value,
+                         pagamento: document.getElementById("pagamento").value,
+                         motorista: document.getElementById("motorista").selectedOptions[0].text,
+                         data_saida: document.getElementById("data_saida").value,
+                         data_retorno: document.getElementById("data_retorno").value,
+                         paradas: document.getElementById("paradas").value,
+                         pedagio: document.getElementById("pedagio").value
+                     };
+         
+                     await fetch("https://script.google.com/macros/s/AKfycbwHhvcKWeN8q2C9hXg4v3gxYcs1q2rHPwaspCVNpVxVVhoL7sbr1JXQu9QfNJdRaIf4Rg/exec", {
+                         method: "POST",
+                         body: JSON.stringify(dados)
+                     });
+         
+                     enviarWhats();
+         
+                     alert("✅ Corrida registrada!");
+         
+                 } catch (erro) {
+                     console.error(erro);
+                     alert("Erro ao salvar.");
+                 }
+             }
+         
+         
+         function enviarWhats() {
+         
+             const nome = document.getElementById("nome").value;
+             const telefone = document.getElementById("telefone").value;
+             const origem = document.getElementById("origem").value;
+             const destino = document.getElementById("destino").value;
+             const paradas = document.getElementById("paradas").value;
+             const data_saida = document.getElementById("data_saida").value;
+             const data_retorno = document.getElementById("data_retorno").value;
+             const tipo = document.getElementById("tipo").value;
+             const motorista = document.getElementById("motorista").value;
+             const pagamento = document.getElementById("pagamento").value;
+         
+             if (!valorFinal) {
+                 alert("Calcule a corrida primeiro.");
+                 return;
+             }
+         
+             let msg =
+                 `🚗 *COTAÇÃO DE CORRIDA*
+         
+         👤 ${nome}
+         📞 ${telefone}
+         
+         📍 Origem: ${origem}
+         📍 Destino: ${destino}
+         🛑 Paradas: ${paradas}
+         
+         📅 Saída: ${data_saida}
+         📅 Retorno: ${data_retorno}
+         🧭 Tipo: ${tipo}
+         
+         💳 Pagamento: ${pagamento}
+         
+         📏 Distância: ${distanciaKM.toFixed(2)} km
+         💰 Valor: R$ ${valorFinal.toFixed(2)}
+         `;
+         
+             const url = `https://wa.me/${motorista}?text=${encodeURIComponent(msg)}`;
+             window.open(url, "_blank");
+         }
+      </script>
+      <!-- Code injected by live-server -->
+      <script>
+         // <![CDATA[  <-- For SVG support
+         if ('WebSocket' in window) {
+             (function () {
+                 function refreshCSS() {
+                     var sheets = [].slice.call(document.getElementsByTagName("link"));
+                     var head = document.getElementsByTagName("head")[0];
+                     for (var i = 0; i < sheets.length; ++i) {
+                         var elem = sheets[i];
+                         var parent = elem.parentElement || head;
+                         parent.removeChild(elem);
+                         var rel = elem.rel;
+                         if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                             var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                             elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                         }
+                         parent.appendChild(elem);
+                     }
+                 }
+                 var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                 var address = protocol + window.location.host + window.location.pathname + '/ws';
+                 var socket = new WebSocket(address);
+                 socket.onmessage = function (msg) {
+                     if (msg.data == 'reload') window.location.reload();
+                     else if (msg.data == 'refreshcss') refreshCSS();
+                 };
+                 if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                     console.log('Live reload enabled.');
+                     sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                 }
+             })();
+         }
+         else {
+             console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+         }
+         // ]]>
+      </script>
+      <script>
+         const sections = document.querySelectorAll("section");
+         const navLinks = document.querySelectorAll("nav a");
+         
+         window.addEventListener("scroll", () => {
+         
+             let current = "";
+         
+             sections.forEach(section => {
+                 const sectionTop = section.offsetTop - 120;
+                 const sectionHeight = section.clientHeight;
+         
+                 if (pageYOffset >= sectionTop) {
+                     current = section.getAttribute("id");
+                 }
+             });
+         
+             navLinks.forEach(link => {
+                 link.classList.remove("active");
+         
+                 if (link.getAttribute("href") === "#" + current) {
+                     link.classList.add("active");
+                 }
+             });
+         });
+      </script>
+      <script>
+         const observer = new IntersectionObserver(entries => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     entry.target.classList.add("show");
+                 }
+             });
+         }, { threshold: 0.2 });
+         
+         document.querySelectorAll(".section, .hero, .market-section")
+             .forEach(el => observer.observe(el));
+      </script>
+      <!-- BOTÃO WHATSAPP FLUTUANTE -->
+      <a href="https://wa.me/5511941824692?text=Olá%20Valmir,%20gostaria%20de%20solicitar%20uma%20corrida."
+         class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <script>
+         const whatsBtn = document.querySelector(".whatsapp-float");
+         
+         whatsBtn.style.opacity = "0";
+         whatsBtn.style.pointerEvents = "none";
+         
+         window.addEventListener("scroll", () => {
+             if (window.scrollY > 300) {
+                 whatsBtn.style.opacity = "1";
+                 whatsBtn.style.pointerEvents = "auto";
+             } else {
+                 whatsBtn.style.opacity = "0";
+                 whatsBtn.style.pointerEvents = "none";
+             }
+         });
+         
+         // Abre o modal
+             function telaLogin() {
+                 document.getElementById("modalLogin").style.display = "flex";
+             }
+         
+             // Fecha o modal
+             function fecharLogin() {
+                 document.getElementById("modalLogin").style.display = "none";
+             }
+         
+             // Valida as credenciais
+             function validarAcesso() {
+                     const user = document.getElementById("userAdmin").value;
+                     const pass = document.getElementById("passAdmin").value;
+                     const erro = document.getElementById("erroLogin");
+         
+                     if (user === "admin" && pass === "861077") {
+         
+                         localStorage.setItem("logado", "sim"); // 🔐 cria sessão
+                         window.location.href = "admin.html";  // abre painel admin
+         
+                     } else {
+                         erro.style.display = "block";
+                         setTimeout(() => { erro.style.display = "none"; }, 3000);
+                     }
+                 }
+         
+         
+             // Fechar se clicar fora do modal
+             window.onclick = function (event) {
+                 let modal = document.getElementById("modalLogin");
+                 if (event.target == modal) {
+                     fecharLogin();
+                 }
+             }
+             function telaCliente() {
+                     document.getElementById("modalCliente").style.display = "flex";
+                 }
+         
+                 function fecharCliente() {
+                     document.getElementById("modalCliente").style.display = "none";
+                 }
+            
+      </script>
+      <!-- MODAL LOGIN CLIENTE -->
+      <div id="modalCliente" class="modal-admin">
+         <div class="modal-content">
+            <span class="close-btn" onclick="fecharCliente()">&times;</span>
+            <h2 style="color:#00eaff;">FAST DRIVE - Área do Cliente</h2>
+            <form action="login.php" method="POST">
+               <h3>Login</h3>
+               <input type="email" name="email" placeholder="Email" required>
+               <input type="password" name="senha" placeholder="Senha" required>
+               <button type="submit">Entrar</button>
+            </form>
+            <div class="divider"></div>
+            <form action="cadastro.php" method="POST">
+               <h3>Cadastro</h3>
+               <input type="text" name="nome" placeholder="Nome" required>
+               <input type="email" name="email" placeholder="Email" required>
+               <input type="text" name="telefone" placeholder="Telefone" required>
+               <input type="password" name="senha" placeholder="Senha" required>
+               <button type="submit" class="btn-cadastro">Cadastrar</button>
+            </form>
+         </div>
+      </div>
+   </body>
 </html>
-
-
-
-
-
