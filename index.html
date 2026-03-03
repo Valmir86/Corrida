@@ -549,6 +549,77 @@
                  function fecharCliente() {
                      document.getElementById("modalCliente").style.display = "none";
                  }
+         // Escreva seu JS aqui// 1. Efeito de Escrita Automática no Título Hero
+function typewriterEffect(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = "";
+    element.classList.add("typing");
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            element.style.borderRight = "none";
+        }
+    }
+    type();
+}
+
+// 2. Observer para animações ao scroll (Melhorado)
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.1 });
+
+// 3. Autocomplete do Google Maps (Melhora muito a UX)
+function initAutocomplete() {
+    const options = {
+        componentRestrictions: { country: "br" },
+        fields: ["address_components", "geometry", "name"],
+        strictBounds: false,
+    };
+    
+    new google.maps.places.Autocomplete(document.getElementById("origem"), options);
+    new google.maps.places.Autocomplete(document.getElementById("destino"), options);
+}
+
+// Inicialização Geral
+document.addEventListener("DOMContentLoaded", () => {
+    // Aplica classe hidden para elementos que vão animar
+    const animElements = document.querySelectorAll('.card, .passo, .section h2, .market-content');
+    animElements.forEach(el => {
+        el.classList.add('hidden');
+        scrollObserver.observe(el);
+    });
+
+    // Inicia efeito de escrita no sub-título
+    const subTitulo = document.querySelector(".hero .anim-sub");
+    typewriterEffect(subTitulo, "Atendimento exclusivo na Zona Sul de São Paulo.", 50);
+
+    // Ativa Autocomplete
+    initAutocomplete();
+});
+
+// 4. Feedback Visual ao Calcular
+const originalCalcular = calcularRota;
+calcularRota = function() {
+    const btn = document.querySelector("button[onclick='calcularRota()']");
+    btn.innerHTML = "Calculando... 🔄";
+    btn.style.background = "#555";
+    
+    setTimeout(() => {
+        originalCalcular();
+        btn.innerHTML = "Calcular";
+        btn.style.background = "";
+        // Scroll suave para o resultado
+        document.getElementById("resultado").scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 800);
+};
             
       </script>
       <!-- MODAL LOGIN CLIENTE -->
@@ -575,3 +646,4 @@
       </div>
    </body>
 </html>
+
