@@ -171,12 +171,10 @@ nav a:hover {
 
 /* ===== FORMULÁRIO ULTRA-COMPACTO & MODERNO ===== */
 .form-box {
-    max-width: 480px;
-    /* Reduzi para ser mais elegante */
+    max-width: 480px; /* Reduzi para ser mais elegante */
     margin: 30px auto;
     padding: 20px;
-    background: rgba(15, 22, 41, 0.95);
-    /* Efeito semi-transparente */
+    background: rgba(15, 22, 41, 0.95); /* Efeito semi-transparente */
     border-radius: 20px;
     border: 1px solid rgba(0, 234, 255, 0.15);
     backdrop-filter: blur(10px);
@@ -189,24 +187,13 @@ nav a:hover {
 
 /* Micro-interação de entrada */
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Campos em largura total */
-.form-box textarea,
-.form-box #origem,
-.form-box #destino,
-.form-box .full-width,
-.form-box #resultado,
-.form-box #map {
+.form-box textarea, .form-box #origem, .form-box #destino, 
+.form-box .full-width, .form-box #resultado, .form-box #map {
     grid-column: span 2;
 }
 
@@ -224,9 +211,7 @@ nav a:hover {
 }
 
 /* INPUTS SLIM */
-.form-box input,
-.form-box select,
-.form-box textarea {
+.form-box input, .form-box select, .form-box textarea {
     padding: 10px 12px;
     font-size: 13px;
     border-radius: 10px;
@@ -265,9 +250,7 @@ nav a:hover {
     transform: scale(1.02);
 }
 
-.form-box button:active {
-    transform: scale(0.98);
-}
+.form-box button:active { transform: scale(0.98); }
 
 /* RESULTADO DISCRETO */
 .result {
@@ -283,17 +266,14 @@ nav a:hover {
 
 /* MAPA INTEGRADO OTIMIZADO */
 #map {
-    height: 200px;
-    /* Menor para economizar espaço */
+    height: 200px; /* Menor para economizar espaço */
     border-radius: 12px;
     border: 1px solid #1f2a44;
     filter: saturate(0.8) contrast(1.1);
     transition: 0.4s;
 }
 
-#map:hover {
-    filter: saturate(1.1);
-}
+#map:hover { filter: saturate(1.1); }
 
 /* FOOTER */
 footer {
@@ -303,117 +283,64 @@ footer {
     background: transparent;
 }
 
-/* ===== AJUSTES DE RESPONSIVIDADE ===== */
+/* ===== RESPONSIVIDADE ===== */
 
-/* Telas Grandes (TV/Monitores Ultrawide) */
+/* Tablet */
+@media (max-width: 900px) {
+    .market-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav div {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        height: 70vh;
+        padding: 20px;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    #map {
+        height: 300px;
+    }
+}
+
+/* Telas grandes (TV) */
 @media (min-width: 1600px) {
     body {
         font-size: 18px;
     }
 
     .hero h2 {
-        font-size: 56px;
+        font-size: 52px;
     }
 
-    .container,
     .market-container {
         max-width: 1400px;
-    }
-}
-
-/* Tablet e Laptops Pequenos (Até 1024px) */
-@media (max-width: 1024px) {
-    .market-container {
-        gap: 30px;
-        padding: 0 20px;
-    }
-
-    .hero h2 {
-        font-size: 38px;
-    }
-}
-
-/* Tablets Retrato (Até 768px) */
-@media (max-width: 768px) {
-
-    /* Navbar vira coluna ou centralizada */
-    nav {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav div {
-        gap: 15px;
-    }
-
-    nav a {
-        margin-left: 0;
-        /* Remove margem lateral no mobile */
-        font-size: 14px;
-    }
-
-    .spacer {
-        height: 120px;
-    }
-
-    /* Aumenta o respiro devido à nav maior */
-
-    /* Marketing Section */
-    .market-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .market-image img {
-        max-width: 100%;
-    }
-
-    /* Como Funciona */
-    .passos {
-        grid-template-columns: 1fr;
-        /* Coluna única no tablet/mobile */
-    }
-}
-
-/* Smartphones (Até 480px) */
-@media (max-width: 480px) {
-    .hero h2 {
-        font-size: 28px;
-        line-height: 1.2;
-    }
-
-    .hero p {
-        font-size: 15px;
-    }
-
-    /* Ajuste do Formulário */
-    .form-box {
-        grid-template-columns: 1fr;
-        /* Força os campos a ocuparem a linha toda */
-        margin: 15px;
-        padding: 15px;
-        border-radius: 15px;
-    }
-
-    .form-box input,
-    .form-box select,
-    .form-box button {
-        grid-column: span 1;
-        /* Em 1 coluna, todos ocupam span 1 */
-    }
-
-    /* Ajuste do Mapa no Mobile */
-    #map {
-        height: 250px;
-    }
-
-    /* Botão flutuante menor para não atrapalhar o conteúdo */
-    .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 15px;
-        right: 15px;
     }
 }
 
