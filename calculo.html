@@ -317,6 +317,9 @@
     <script>
 
         /* MOSTRAR TELAS */
+        /* URL DO BANCO GOOGLE SHEETS */
+            const API = "https://script.google.com/macros/s/AKfycbzOWQbjIcRvmnGd_ViEzTaHVfWs0J1KjcfXQDz5wCUX1TZFQoEEezny9QFHydhYGOUv_Q/exec"
+
 
         function mostrarCadastro() {
 
@@ -336,64 +339,72 @@
 
         function cadastrar() {
 
-            let user = document.getElementById("cadUser").value
-            let email = document.getElementById("cadEmail").value
-            let senha = document.getElementById("cadSenha").value
+                let user = document.getElementById("cadUser").value
+                let email = document.getElementById("cadEmail").value
+                let senha = document.getElementById("cadSenha").value
 
-            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+                fetch(API, {
+                    method: "POST",
+                    body: new URLSearchParams({
 
-            usuarios.push({ user, email, senha })
+                        acao: "cadastrar",
+                        usuario: user,
+                        email: email,
+                        senha: senha
 
-            localStorage.setItem("usuarios", JSON.stringify(usuarios))
+                    })
 
-            alert("Conta criada!")
+                })
+                    .then(r => r.json())
+                    .then(res => {
 
-            mostrarLogin()
+                        alert("Conta criada!")
 
-        }
+                        mostrarLogin()
+
+                    })
+
+            }
 
         /* LOGIN */
 
         function logar() {
 
-            let user = document.getElementById("loginUser").value
-            let senha = document.getElementById("loginSenha").value
+                let user = document.getElementById("loginUser").value
+                let senha = document.getElementById("loginSenha").value
 
-            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+                fetch(API, {
+                    method: "POST",
+                    body: new URLSearchParams({
 
-            let encontrado = usuarios.find(u => u.user == user && u.senha == senha)
+                        acao: "login",
+                        usuario: user,
+                        senha: senha
 
-            if (encontrado) {
+                    })
 
-                localStorage.setItem("login", "ok")
+                })
+                    .then(r => r.json())
+                    .then(res => {
 
-                document.getElementById("login").style.display = "none"
-                document.getElementById("sistema").style.display = "flex"
+                        if (res.status == "ok") {
 
-                initMap()
+                            localStorage.setItem("login", "ok")
 
-            } else {
+                            document.getElementById("login").style.display = "none"
+                            document.getElementById("sistema").style.display = "flex"
 
-                alert("Usuário ou senha incorretos")
+                            initMap()
+
+                        } else {
+
+                            alert("Usuário ou senha incorretos")
+
+                        }
+
+                    })
 
             }
-
-        }
-
-        function logout() {
-
-            localStorage.removeItem("login")
-            location.reload()
-
-        }
-
-        if (localStorage.getItem("login")) {
-
-            document.getElementById("login").style.display = "none"
-            document.getElementById("sistema").style.display = "flex"
-
-        }
-
         /* MAPA */
 
         let map
@@ -450,7 +461,21 @@
                         valor = 10 + ((distancia - 3) * 3.25)
                     }
 
-                    document.getElementById("valor").innerText = valor.toFixed(2)
+                   document.getElementById("valor").innerText = valor.toFixed(2)
+
+fetch(API, {
+method: "POST",
+body: new URLSearchParams({
+
+    acao: "corrida",
+    origem: origem,
+    destino: destino,
+    distancia: distancia.toFixed(2),
+    valor: valor.toFixed(2)
+
+})
+
+                    })
 
                 }
 
