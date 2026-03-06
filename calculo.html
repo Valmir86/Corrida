@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FastDrive | Sistema</title>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8-UDY7bijEMI5PfZX3DS0VqozV046VUM&libraries=places"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .9)), url("fast_drive.jpg");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* LOGIN / CADASTRO */
+
+        .auth {
+
+            width: 350px;
+            background: rgba(0, 0, 0, .7);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px #00b7ff;
+            text-align: center;
+
+        }
+
+        .auth input {
+
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #1e1e1e;
+            color: white;
+
+        }
+
+        .auth button {
+
+            margin-top: 15px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #0096ff, #00d4ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+
+        }
+
+        .auth button:hover {
+            transform: scale(1.05);
+        }
+
+        .link {
+
+            margin-top: 10px;
+            cursor: pointer;
+            color: #00b7ff;
+            font-size: 14px;
+
+        }
+
+        /* SISTEMA */
+
+        #sistema {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* MENU */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, .85);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #00b7ff;
+            z-index: 10;
+        }
+
+        nav h2 {
+            color: #00b7ff;
+        }
+
+        nav button {
+            background: red;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* LAYOUT */
+
+        .main {
+
+            margin-top: 90px;
+            width: 95%;
+            max-width: 1300px;
+
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 30px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .container {
+            background: rgba(0, 0, 0, .6);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 149, 255, .5);
+        }
+
+        .banner {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .banner img {
+            width: 120px;
+            border-radius: 100px;
+            box-shadow: 0 0 20px #00b7ff;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #1e1e1e;
+            color: white;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #00b7ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-calcular {
+            background: linear-gradient(45deg, #0096ff, #00d4ff);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            margin-top: 10px;
+            background: #25d365;
+        }
+
+        .resultado {
+            margin-top: 15px;
+        }
+
+        .valor {
+            color: #00ff88;
+            font-size: 22px;
+        }
+
+        /* MAPA */
+
+        #map {
+            width: 100%;
+            height: 420px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, .5);
+        }
+
+        /* RESPONSIVO */
+
+        @media(max-width:900px) {
+
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            #map {
+                height: 350px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+
+    <div class="auth" id="login">
+
+        <h2>Login FastDrive</h2>
+
+        <input id="loginUser" placeholder="Usuário">
+
+        <input id="loginSenha" type="password" placeholder="Senha">
+
+        <button onclick="logar()">Entrar</button>
+
+        <div class="link" onclick="mostrarCadastro()">
+            Criar conta
+        </div>
+
+    </div>
+
+    <!-- CADASTRO -->
+
+    <div class="auth" id="cadastro" style="display:none">
+
+        <h2>Criar Conta</h2>
+
+        <input id="cadUser" placeholder="Usuário">
+
+        <input id="cadEmail" placeholder="Email">
+
+        <input id="cadSenha" type="password" placeholder="Senha">
+
+        <button onclick="cadastrar()">Cadastrar</button>
+
+        <div class="link" onclick="mostrarLogin()">
+            Voltar para login
+        </div>
+
+    </div>
+
+
+    <!-- SISTEMA -->
+
+    <div id="sistema">
+
+        <nav>
+
+            <h2>FASTDRIVE</h2>
+
+            <button onclick="logout()">Sair</button>
+
+        </nav>
+
+        <div class="main">
+
+            <div class="container">
+
+                <div class="banner">
+
+                    <img src="fast_drive.jpg">
+                    <h2>Calcular Corrida</h2>
+
+                </div>
+
+                <input id="origem" placeholder="Local de partida">
+
+                <input id="destino" placeholder="Destino">
+
+                <button onclick="calcular()" class="btn-calcular">
+                    Calcular Corrida
+                </button>
+
+                <div class="resultado">
+
+                    <p>📏 Distância: <span id="distancia">0</span></p>
+
+                    <p>⏱ Tempo: <span id="tempo">0</span></p>
+
+                    <p class="valor">💰 Valor: R$ <span id="valor">0.00</span></p>
+
+                </div>
+
+                <button onclick="whatsapp()" class="btn-whatsapp">
+                    Solicitar Corrida
+                </button>
+
+            </div>
+
+            <div id="map"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        /* MOSTRAR TELAS */
+
+        function mostrarCadastro() {
+
+            document.getElementById("login").style.display = "none"
+            document.getElementById("cadastro").style.display = "block"
+
+        }
+
+        function mostrarLogin() {
+
+            document.getElementById("cadastro").style.display = "none"
+            document.getElementById("login").style.display = "block"
+
+        }
+
+        /* CADASTRAR */
+
+        function cadastrar() {
+
+            let user = document.getElementById("cadUser").value
+            let email = document.getElementById("cadEmail").value
+            let senha = document.getElementById("cadSenha").value
+
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+            usuarios.push({ user, email, senha })
+
+            localStorage.setItem("usuarios", JSON.stringify(usuarios))
+
+            alert("Conta criada!")
+
+            mostrarLogin()
+
+        }
+
+        /* LOGIN */
+
+        function logar() {
+
+            let user = document.getElementById("loginUser").value
+            let senha = document.getElementById("loginSenha").value
+
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+            let encontrado = usuarios.find(u => u.user == user && u.senha == senha)
+
+            if (encontrado) {
+
+                localStorage.setItem("login", "ok")
+
+                document.getElementById("login").style.display = "none"
+                document.getElementById("sistema").style.display = "flex"
+
+                initMap()
+
+            } else {
+
+                alert("Usuário ou senha incorretos")
+
+            }
+
+        }
+
+        function logout() {
+
+            localStorage.removeItem("login")
+            location.reload()
+
+        }
+
+        if (localStorage.getItem("login")) {
+
+            document.getElementById("login").style.display = "none"
+            document.getElementById("sistema").style.display = "flex"
+
+        }
+
+        /* MAPA */
+
+        let map
+        let directionsService
+        let directionsRenderer
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById("map"), {
+
+                center: { lat: -23.5505, lng: -46.6333 },
+                zoom: 12
+
+            })
+
+            directionsService = new google.maps.DirectionsService()
+            directionsRenderer = new google.maps.DirectionsRenderer()
+
+            directionsRenderer.setMap(map)
+
+            new google.maps.places.Autocomplete(document.getElementById("origem"))
+            new google.maps.places.Autocomplete(document.getElementById("destino"))
+
+        }
+
+        function calcular() {
+
+            let origem = document.getElementById("origem").value
+            let destino = document.getElementById("destino").value
+
+            directionsService.route({
+
+                origin: origem,
+                destination: destino,
+                travelMode: "DRIVING"
+
+            }, function (result, status) {
+
+                if (status === "OK") {
+
+                    directionsRenderer.setDirections(result)
+
+                    let distancia = result.routes[0].legs[0].distance.value / 1000
+                    let tempo = result.routes[0].legs[0].duration.text
+
+                    document.getElementById("distancia").innerText = distancia.toFixed(2) + " km"
+                    document.getElementById("tempo").innerText = tempo
+
+                    let valor
+
+                    if (distancia <= 3) {
+                        valor = 10
+                    } else {
+                        valor = 10 + ((distancia - 3) * 3.25)
+                    }
+
+                    document.getElementById("valor").innerText = valor.toFixed(2)
+
+                }
+
+            })
+
+        }
+
+        function whatsapp() {
+
+            let origem = document.getElementById("origem").value
+            let destino = document.getElementById("destino").value
+            let distancia = document.getElementById("distancia").innerText
+            let valor = document.getElementById("valor").innerText
+
+            let msg = `🚗 FASTDRIVE
+
+Origem: ${origem}
+Destino: ${destino}
+
+Distância: ${distancia}
+Valor estimado: R$ ${valor}`
+
+            window.open(`https://wa.me/5511941824692?text=${encodeURIComponent(msg)}`)
+
+        }
+
+    </script>
+
+</body>
+
+</html>
