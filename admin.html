@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel FastDrive</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            padding: 30px;
+        }
+
+        .login {
+            max-width: 320px;
+            margin: auto;
+            text-align: center;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            background: #00aaff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #008ecc;
+        }
+
+        .container {
+            display: none;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 30px;
+            color: #00aaff;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #444;
+            text-align: left;
+        }
+
+        th {
+            background: #1e293b;
+        }
+
+        canvas {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+
+    <div class="login" id="login">
+
+        <h2>Admin FastDrive</h2>
+
+        <input id="usuario" placeholder="Usuário">
+        <input id="senha" type="password" placeholder="Senha">
+
+        <button onclick="entrar()">Entrar</button>
+
+    </div>
+
+
+    <!-- PAINEL -->
+
+    <div class="container" id="painel">
+
+        <h1>Dashboard FastDrive</h1>
+
+        <!-- FILTRO -->
+
+        <select id="filtroUsuario" onchange="filtrarUsuario()">
+            <option value="todos">Todos usuários</option>
+        </select>
+
+
+        <!-- CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+                <p>Total Corridas</p>
+                <h2 id="totalCorridas">0</h2>
+            </div>
+
+            <div class="card">
+                <p>Faturamento</p>
+                <h2 id="faturamento">R$ 0</h2>
+            </div>
+
+        </div>
+
+
+        <!-- GRÁFICO -->
+
+        <canvas id="grafico"></canvas>
+
+
+        <!-- TABELA -->
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Usuário</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Distância</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabela"></tbody>
+
+        </table>
+
+    </div>
+
+
+    <script>
+
+        const API = "https://script.google.com/macros/s/AKfycbxpMl9dBMd_b_Rj_Y5ppNx_Wwuy2Wsjy4p268F82eXEOgJrC25sX7QCFZD_fyXlIR5JXw/exec"
+
+        let corridas = []
+
+        /* LOGIN */
+
+        function entrar() {
+
+            let usuario = document.getElementById("usuario").value
+            let senha = document.getElementById("senha").value
+
+            fetch(API, {
+                method: "POST",
+                body: new URLSearchParams({
+
+                    acao: "loginAdmin",
+                    usuario: usuario,
+                    senha: senha
+
+                })
+            })
+
+                .then(r => r.json())
+
+                .then(res => {
+
+                    if (res.status == "ok") {
+
+                        document.getElementById("login").style.display = "none"
+                        document.getElementById("painel").style.display = "block"
+
+                        carregar()
+
+                    } else {
+
+                        alert("Usuário ou senha incorretos")
+
+                    }
+
+                })
+
+        }
+
+        /* CARREGAR */
+
+        function carregar() {
+
+            fetch(API + "?acao=listarCorridas")
+
+                .then(r => r.json())
+
+                .then(dados => {
+
+                    corridas = dados
+
+                    render(dados)
+                    criarGrafico(dados)
+                    popularUsuarios(dados)
+
+                })
+
+        }
+
+        /* RENDER */
+
+        function render(lista) {
+
+            let html = ""
+            let total = 0
+
+            lista.forEach(c => {
+
+                total += Number(c.valor)
+
+                html += `
+
+<tr>
+
+<td>${c.data}</td>
+<td>${c.usuario || "-"}</td>
+<td>${c.origem}</td>
+<td>${c.destino}</td>
+<td>${c.distancia} km</td>
+<td>R$ ${c.valor}</td>
+
+</tr>
+
+`
+
+            })
+
+            document.getElementById("tabela").innerHTML = html
+            document.getElementById("totalCorridas").innerText = lista.length
+            document.getElementById("faturamento").innerText = "R$ " + total.toFixed(2)
+
+        }
+
+        /* FILTRO USUARIO */
+
+        function popularUsuarios(lista) {
+
+            let select = document.getElementById("filtroUsuario")
+
+            let usuarios = [...new Set(lista.map(c => c.usuario))]
+
+            usuarios.forEach(u => {
+
+                let op = document.createElement("option")
+                op.value = u
+                op.textContent = u
+
+                select.appendChild(op)
+
+            })
+
+        }
+
+        function filtrarUsuario() {
+
+            let user = document.getElementById("filtroUsuario").value
+
+            if (user == "todos") {
+
+                render(corridas)
+                criarGrafico(corridas)
+
+            } else {
+
+                let filtrado = corridas.filter(c => c.usuario == user)
+
+                render(filtrado)
+                criarGrafico(filtrado)
+
+            }
+
+        }
+
+        /* GRÁFICO */
+
+        let chart
+
+        function criarGrafico(lista) {
+
+            let dias = {}
+            lista.forEach(c => {
+
+                let d = c.data.split(" ")[0]
+
+                if (!dias[d]) dias[d] = 0
+
+                dias[d] += Number(c.valor)
+
+            })
+
+            let labels = Object.keys(dias)
+            let valores = Object.values(dias)
+
+            if (chart) chart.destroy()
+
+            chart = new Chart(document.getElementById("grafico"), {
+
+                type: "line",
+
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Faturamento diário",
+                        data: valores,
+                        borderWidth: 3
+                    }]
+                }
+
+            })
+
+        }
+
+    </script>
+
+</body>
+
+</html>
